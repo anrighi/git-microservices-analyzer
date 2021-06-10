@@ -115,12 +115,12 @@ function activate(context) {
     }
   );
 
-
+  context.subscriptions.push(dataAnalysis);
 
   let provider = new fileDecorator.CountDecorationProvider();
   context.subscriptions.push(provider);
 
-  vscode.workspace.onDidSaveTextDocument(() => {
+  const fileColorEngine = () => {
     const gitExtension = vscode.extensions.getExtension("vscode.git").exports;
     const git = gitExtension.getAPI(1);
 
@@ -152,14 +152,20 @@ function activate(context) {
 
     provider.reset();
 
+    const maxValue = editedModules.map(em => { return { name: em, length: modules[em].length } })
+
+    maxValue.sort((a, b) => b.length - a.length)
+
+    delete editedModules[editedModules.indexOf(maxValue[0].name)];
+
     editedModules.forEach((em) => {
       modules[em].forEach((filePath) => {
         provider.setUri(filePath);
       });
     });
-  });
+  }
 
-  context.subscriptions.push(dataAnalysis);
+  vscode.workspace.onDidSaveTextDocument(() => fileColorEngine());
 }
 
 // this method is called when your extension is deactivated

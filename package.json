@@ -2,7 +2,7 @@
   "name": "git-microservices-analyzer",
   "displayName": "Git Microservices Analyzer",
   "description": "Plugin which analyzes git metadata in order to assess microservices' systems",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "publisher": "anrighi",
   "engines": {
     "vscode": "^1.56.0"

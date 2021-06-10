@@ -36,7 +36,8 @@ class CountDecorationProvider {
 
     return {
       badge: "NC",
-      tooltip: "NC",
+      tooltip: "notCommittable",
+      propagate: true,
       color: vscode.ThemeColor("charts.purple")
     };
   }
