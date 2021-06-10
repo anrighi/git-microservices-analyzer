@@ -1,17 +1,30 @@
 {
   "name": "git-microservices-analyzer",
-  "displayName": "git-microservices-analyzer",
+  "displayName": "Git Microservices Analyzer",
   "description": "Plugin which analyzes git metadata in order to assess microservices' systems",
   "version": "0.0.1",
+  "publisher": "anrighi",
   "engines": {
     "vscode": "^1.56.0"
   },
   "categories": [
-    "Other"
+    "Visualization"
+  ],
+  "keywords": [
+    "git",
+    "microservices",
+    "metadata",
+    "statical analysis"
   ],
   "activationEvents": [
     "onStartupFinished"
   ],
+  "icon": "src/assets/icon.png",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "galleryBanner": {
+    "color": "#C80000",
+    "theme": "dark"
+  },
   "main": "./src/extension.js",
   "contributes": {
     "commands": [
@@ -21,6 +34,15 @@
       }
     ]
   },
+  "bugs": {
+    "url": "https://github.com/aaandri98/git-microservices-analyzer/issues",
+    "email": "an.righi7@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/aaandri98/git-microservices-analyzer"
+  },
+  "homepage": "https://git-microservices-analyzer.ml",
   "scripts": {
     "lint": "eslint .",
     "pretest": "npm run lint",
