@@ -115,7 +115,10 @@ function activate(context) {
     }
   );
 
-  const provider = new fileDecorator.CountDecorationProvider();
+
+
+  let provider = new fileDecorator.CountDecorationProvider();
+  context.subscriptions.push(provider);
 
   vscode.workspace.onDidSaveTextDocument(() => {
     const gitExtension = vscode.extensions.getExtension("vscode.git").exports;
@@ -127,8 +130,6 @@ function activate(context) {
     const repoUri = repo.rootUri.path;
 
     const modules = {};
-
-    console.log(changes);
 
     let path, moduleName;
 
@@ -149,23 +150,20 @@ function activate(context) {
       return true;
     }
 
+    provider.reset();
+
     editedModules.forEach((em) => {
       modules[em].forEach((filePath) => {
-        console.log(filePath);
-        provider.provideFileDecoration(filePath);
+        provider.setUri(filePath);
       });
     });
-
-    provider.dispose();
   });
-
-  context.subscriptions.push(provider);
 
   context.subscriptions.push(dataAnalysis);
 }
 
 // this method is called when your extension is deactivated
-function deactivate() {}
+function deactivate() { }
 
 module.exports = {
   activate,
